@@ -82,7 +82,11 @@ const ColorFetcher = () => {
           responses.map((response) => response.json())
         );
 
-        setData(jsonDatas);
+        const colorObjects = jsonDatas.map((json) => {
+          return { value: `${json.hsl.value}`, name: `${json.name.value}` };
+        });
+
+        setData(colorObjects);
 
         setIsLoading(false);
       } catch (err) {
@@ -107,7 +111,7 @@ const ColorFetcher = () => {
   return (
     <div>
       {data.map((color) => (
-        <pre key={color.hex.value}>{JSON.stringify(color, null, 2)}</pre>
+        <pre key={color.name}>{JSON.stringify(color, null, 2)}</pre>
       ))}
     </div>
   );
