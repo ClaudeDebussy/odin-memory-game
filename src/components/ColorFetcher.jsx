@@ -28,6 +28,7 @@ const ColorFetcher = () => {
 
     function addNewHslToArray(arr) {
       const newHsl = getRandomHsl();
+      //check if color already exists
       if (!arr.includes(newHsl)) {
         arr.push(newHsl);
       }
@@ -40,7 +41,18 @@ const ColorFetcher = () => {
     return array;
   };
 
-  console.log(getArrayOfHslValues());
+  const getArrayOfUrls = (colors) => {
+    const arr = [];
+    for (let i = 0; i < colors.length; i++) {
+      arr.push(
+        `https://www.thecolorapi.com/id?hsl=${colors[i].hue},${colors[i].saturation}%,${colors[i].lightness}%`
+      );
+    }
+    return arr;
+  };
+
+  const hslValues = getArrayOfHslValues();
+  const urls = getArrayOfUrls(hslValues);
 
   const randomHslValues = getRandomHsl();
   const url = `https://www.thecolorapi.com/id?hsl=${randomHslValues.hue},${randomHslValues.saturation}%,${randomHslValues.lightness}%`;
