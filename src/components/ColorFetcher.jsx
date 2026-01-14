@@ -24,14 +24,22 @@ const getArrayOfHslValues = () => {
   const desiredNumberOfColors = 12;
   const array = [];
 
-  function addNewHslToArray(arr) {
-    const newHsl = getRandomHsl();
-    arr.push(newHsl);
-    // TODO: check if color already exists
-  }
-
   while (array.length < desiredNumberOfColors) {
-    addNewHslToArray(array);
+    const newColor = getRandomHsl();
+    const isRepeated = array.some(
+      (color) =>
+        color.hue === newColor.hue &&
+        color.saturation === newColor.saturation &&
+        color.lightness === newColor.lightness
+    );
+
+    if (!isRepeated) {
+      array.push(newColor);
+    } else {
+      console.log(
+        "Duplicate color created! \nThere is a only 1/3,600,000 chance of this! \nRecalculating..."
+      );
+    }
   }
 
   return array;
@@ -74,7 +82,7 @@ const ColorFetcher = () => {
           responses.map((response) => response.json())
         );
 
-        await setData(jsonDatas);
+        setData(jsonDatas);
 
         setIsLoading(false);
       } catch (err) {
