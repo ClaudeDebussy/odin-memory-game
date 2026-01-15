@@ -76,6 +76,7 @@ export const fetchColors = async (totalColors) => {
           s: `${json.hsl.s}`,
           l: `${json.hsl.l}`,
           name: `${json.name.value}`,
+          contrastHex: `${json.contrast.value}`,
         };
       });
 
