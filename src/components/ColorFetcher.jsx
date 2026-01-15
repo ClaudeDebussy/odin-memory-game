@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+const NUMBER_OF_COLORS_DESIRED = 12;
+
 const getRandomHsl = () => {
   // settings below for vibrant colors
   const satMax = 90;
@@ -20,11 +22,10 @@ const getRandomHsl = () => {
   };
 };
 
-const getArrayOfHslValues = () => {
-  const desiredNumberOfColors = 12;
+const getHslValues = (totalColors) => {
   const array = [];
 
-  while (array.length < desiredNumberOfColors) {
+  while (array.length < totalColors) {
     const newColor = getRandomHsl();
     const isRepeated = array.some(
       (color) =>
@@ -45,7 +46,7 @@ const getArrayOfHslValues = () => {
   return array;
 };
 
-const getArrayOfUrls = (colors) => {
+const getUrls = (colors) => {
   const arr = [];
   for (let i = 0; i < colors.length; i++) {
     arr.push(
@@ -61,43 +62,49 @@ const ColorFetcher = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const hslValues = getArrayOfHslValues();
-    const urls = getArrayOfUrls(hslValues);
+    const fetchColors = async (totalColors) => {
+      const finalColors = [];
 
-    const fetchMultipleColors = async () => {
-      try {
-        const urlsToFetch = urls;
+      while (finalColors.length < totalColors) {
+        const hslValues = getHslValues(totalColors - finalColors.length);
+        const urls = getUrls(hslValues);
 
-        const responses = await Promise.all(
-          urlsToFetch.map((url) => fetch(url))
-        );
+        try {
+          const responses = await Promise.all(urls.map((u) => fetch(u)));
 
-        for (const response of responses) {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status ${response.status}`);
+          for (const response of responses) {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status ${response.status}`);
+            }
           }
+
+          const jsonDatas = await Promise.all(responses.map((r) => r.json()));
+
+          const colorObjects = jsonDatas.map((json) => {
+            return { value: `${json.hsl.value}`, name: `${json.name.value}` };
+          });
+
+          for (let i = 0; i < colorObjects.length; i++) {
+            if (
+              !finalColors.some(
+                (color) =>
+                  // If color not in finalColors, push it.
+                  color.name === colorObjects[i].name
+              )
+            ) {
+              finalColors.push(colorObjects[i]);
+            }
+          }
+        } catch (error) {
+          setError(error.message);
+          setData(null);
         }
-
-        const jsonDatas = await Promise.all(
-          responses.map((response) => response.json())
-        );
-
-        const colorObjects = jsonDatas.map((json) => {
-          return { value: `${json.hsl.value}`, name: `${json.name.value}` };
-        });
-
-        setData(colorObjects);
-
-        setIsLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setData(null);
-      } finally {
-        setIsLoading(false);
       }
+      setIsLoading(false);
+      setData(finalColors);
     };
 
-    fetchMultipleColors();
+    fetchColors(NUMBER_OF_COLORS_DESIRED);
   }, []);
 
   if (isLoading) {
