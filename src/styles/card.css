@@ -15,6 +15,6 @@
   text-align: center;
   overflow-wrap: break-word;
   word-wrap: break-word;
-  font-size: clamp(0.5rem, 5vw, 2rem);
+  font-size: clamp(0.5rem, 5vmin, 2rem);
   line-height: 1.1;
 }
