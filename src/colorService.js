@@ -71,7 +71,12 @@ export const fetchColors = async (totalColors) => {
       const jsonDatas = await Promise.all(responses.map((r) => r.json()));
 
       const colorObjects = jsonDatas.map((json) => {
-        return { value: `${json.hsl.value}`, name: `${json.name.value}` };
+        return {
+          h: `${json.hsl.h}`,
+          s: `${json.hsl.s}`,
+          l: `${json.hsl.l}`,
+          name: `${json.name.value}`,
+        };
       });
 
       for (let i = 0; i < colorObjects.length; i++) {

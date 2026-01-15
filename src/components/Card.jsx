@@ -1,5 +1,15 @@
+import "../styles/card.css";
+
 function Card(props) {
-  return <h1>{props.color.name}</h1>;
+  const colorStyle = {
+    color: `hsl(${props.color.h},${props.color.s}%,${props.color.l}%)`,
+  };
+
+  return (
+    <h1 style={colorStyle}>
+      {props.color.name} {props.color.h} {props.color.s} {props.color.l}
+    </h1>
+  );
 }
 
 export default Card;

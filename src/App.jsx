@@ -32,10 +32,12 @@ function App() {
   }
 
   return (
-    <div>
-      {data.map((color) => (
-        <Card key={color.name} color={color} />
-      ))}
+    <div className="container">
+      <div className="play-area">
+        {data.map((color) => (
+          <Card key={color.name} color={color} />
+        ))}
+      </div>
     </div>
   );
 }
