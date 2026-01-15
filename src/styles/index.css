@@ -3,6 +3,7 @@ body {
 }
 
 .play-area {
+  height: 100vh;
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;

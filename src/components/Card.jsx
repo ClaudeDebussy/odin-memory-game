@@ -6,7 +6,11 @@ function Card(props) {
     color: `${props.color.contrastHex}`,
   };
 
-  return <h1 style={colorStyle}>{props.color.name}</h1>;
+  return (
+    <div className="card" style={colorStyle}>
+      <h1>{props.color.name}</h1>
+    </div>
+  );
 }
 
 export default Card;
