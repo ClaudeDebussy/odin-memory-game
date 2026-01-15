@@ -1,0 +1,10 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.play-area {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
