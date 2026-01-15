@@ -1,5 +1,5 @@
-function Card() {
-  return <h1>Hello </h1>;
+function Card(props) {
+  return <h1>{props.color.name}</h1>;
 }
 
 export default Card;
