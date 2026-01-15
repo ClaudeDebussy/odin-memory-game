@@ -4,4 +4,15 @@
   align-items: center;
 
   border-radius: 5px;
+  padding: 1rem;
+  width: 100%;
+}
+
+.card h1 {
+  width: 100%;
+  padding: 0 10px;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  font-size: clamp(0.5rem, 5vw, 2rem);
 }
