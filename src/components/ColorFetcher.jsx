@@ -93,6 +93,10 @@ const ColorFetcher = () => {
               )
             ) {
               finalColors.push(colorObjects[i]);
+            } else {
+              console.log(
+                `Color "${colorObjects[i].name}" already present! Searching again...`
+              );
             }
           }
         } catch (error) {
