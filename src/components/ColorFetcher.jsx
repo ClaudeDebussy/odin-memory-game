@@ -4,15 +4,15 @@ const NUMBER_OF_COLORS_DESIRED = 12;
 
 const getRandomHsl = () => {
   // settings below for vibrant colors
-  const satMax = 90;
-  const satMin = 50;
-  const lightMax = 60;
-  const lightMin = 40;
+  const SAT_MAX = 90;
+  const SAT_MIN = 50;
+  const LIGHT_MAX = 60;
+  const LIGHT_MIN = 40;
 
   const hue = Math.floor(Math.random() * 360);
-  const saturation = Math.floor(Math.random() * (satMax - satMin) + satMin);
+  const saturation = Math.floor(Math.random() * (SAT_MAX - SAT_MIN) + SAT_MIN);
   const lightness = Math.floor(
-    Math.random() * (lightMax - lightMin) + lightMin
+    Math.random() * (LIGHT_MAX - LIGHT_MIN) + LIGHT_MIN
   );
 
   return {
