@@ -38,10 +38,10 @@ function App() {
 
   return (
     <div className="container">
-      <Header shuffleColors={handleShuffle} />
+      <Header shuffle={handleShuffle} />
       <div className="play-area">
         {data.map((color) => (
-          <Card key={color.name} color={color} />
+          <Card key={color.name} color={color} shuffle={handleShuffle} />
         ))}
       </div>
     </div>
