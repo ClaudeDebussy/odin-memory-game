@@ -1,9 +1,11 @@
 import "../styles/header.css";
 
-function Header() {
+function Header(props) {
   return (
     <div className="header">
-      <button className="Shuffle">Shuffle</button>
+      <button className="Shuffle" onClick={props.shuffleColors}>
+        Shuffle
+      </button>
       <button>Two</button>
       <button>Three</button>
     </div>

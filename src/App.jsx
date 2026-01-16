@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchColors } from "./colorService.js";
+import { fetchColors, shuffleColors } from "./colorService.js";
 import Card from "./components/Card.jsx";
 import Header from "./components/Header.jsx";
 
@@ -9,6 +9,11 @@ function App() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  function handleShuffle() {
+    const shuffled = shuffleColors(data);
+    setData(shuffled);
+  }
 
   useEffect(() => {
     (async () => {
@@ -34,7 +39,7 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
+      <Header shuffleColors={handleShuffle} />
       <div className="play-area">
         {data.map((color) => (
           <Card key={color.name} color={color} />

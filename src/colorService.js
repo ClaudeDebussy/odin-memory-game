@@ -103,12 +103,14 @@ export const fetchColors = async (totalColors) => {
 };
 
 export const shuffleColors = (colors) => {
-  let pointer = colors.length - 1;
+  const array = [...colors];
+  let pointer = array.length - 1;
   while (pointer != 0) {
-    const randomIndex = Math.floor(Math.random() * (colors.length - 1));
-    const temp = colors[pointer];
-    colors[pointer] = colors[randomIndex];
-    colors[randomIndex] = temp;
+    const randomIndex = Math.floor(Math.random() * (array.length - 1));
+    const temp = array[pointer];
+    array[pointer] = array[randomIndex];
+    array[randomIndex] = temp;
     pointer -= 1;
   }
+  return array;
 };
