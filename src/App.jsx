@@ -10,11 +10,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  function handleShuffle() {
-    setData(shuffleColors(data));
-  }
-
-  async function newGame() {
+  async function newColors() {
     setData(null);
     setIsLoading(true);
     setError(null);
@@ -30,8 +26,12 @@ function App() {
     }
   }
 
+  function handleShuffle() {
+    setData(shuffleColors(data));
+  }
+
   useEffect(() => {
-    newGame();
+    newColors();
   }, []);
 
   if (isLoading) {
@@ -44,7 +44,7 @@ function App() {
 
   return (
     <div className="container">
-      <Header newGame={newGame} />
+      <Header newColors={newColors} />
       <div className="play-area">
         {data.map((color) => (
           <Card key={color.name} color={color} shuffle={handleShuffle} />
