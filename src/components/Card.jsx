@@ -22,7 +22,7 @@ function Card(props) {
     backgroundColor: `hsl(${props.color.h},${props.color.s}%,${
       props.color.l - 20
     }%)`,
-    transform: "rotate(4deg)",
+    transform: "rotate(360deg)",
   };
 
   const currentStyle = {
