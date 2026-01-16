@@ -6,6 +6,7 @@ function Card(props) {
   const [isMouseDown, setIsMouseDown] = useState(false);
 
   const baseStyle = {
+    willChange: "transform",
     backgroundColor: `hsl(${props.color.h},${props.color.s}%,${props.color.l}%)`,
     color: `${props.color.contrastHex}`,
     transition: "background-color 0.1s ease, transform 0.1s ease",
