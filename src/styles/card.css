@@ -9,6 +9,10 @@
   height: 100%;
 }
 
+.card:hover {
+  cursor: pointer;
+}
+
 .card h1 {
   width: 100%;
   padding: 0 10px;
