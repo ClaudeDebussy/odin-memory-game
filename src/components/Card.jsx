@@ -6,8 +6,8 @@ function Card(props) {
   const [isMouseDown, setIsMouseDown] = useState(false);
 
   const handleClick = (color) => {
-    props.shuffle();
     props.takeTurn(color);
+    props.shuffle();
   };
 
   const baseStyle = {
