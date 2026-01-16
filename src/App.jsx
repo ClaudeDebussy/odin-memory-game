@@ -20,6 +20,7 @@ function App() {
     setError(null);
     setScore(0);
     setSeenColors([]);
+    setHasWon(false);
 
     try {
       const colors = await fetchColors(NUMBER_OF_COLORS_DESIRED);
@@ -38,14 +39,11 @@ function App() {
       setSeenColors([...seenColors, color]);
       setScore(nextScore);
       if (nextScore >= highScore) setHighScore(nextScore);
+      if (seenColors.length + 1 === NUMBER_OF_COLORS_DESIRED) setHasWon(true);
     } else {
       setScore(0);
       setSeenColors([]);
     }
-  }
-
-  function handleWin() {
-    setHasWon(true);
   }
 
   function handleShuffle() {
