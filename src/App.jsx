@@ -14,18 +14,24 @@ function App() {
     setData(shuffleColors(data));
   }
 
+  async function newGame() {
+    setData(null);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const colors = await fetchColors(NUMBER_OF_COLORS_DESIRED);
+      setData(colors);
+    } catch (error) {
+      setError(error);
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   useEffect(() => {
-    (async () => {
-      try {
-        const colors = await fetchColors(NUMBER_OF_COLORS_DESIRED);
-        setData(colors);
-      } catch (error) {
-        setError(error);
-        setIsLoading(false);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
+    newGame();
   }, []);
 
   if (isLoading) {
@@ -38,7 +44,7 @@ function App() {
 
   return (
     <div className="container">
-      <Header shuffle={handleShuffle} />
+      <Header newGame={newGame} />
       <div className="play-area">
         {data.map((color) => (
           <Card key={color.name} color={color} shuffle={handleShuffle} />
