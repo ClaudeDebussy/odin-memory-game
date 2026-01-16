@@ -34,6 +34,7 @@ function App() {
   }
 
   function handleTakeTurn(color) {
+    if (hasWon) setHasWon(false);
     if (!seenColors.includes(color)) {
       const nextScore = score + 1;
       setSeenColors([...seenColors, color]);
