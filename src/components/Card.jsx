@@ -5,6 +5,11 @@ function Card(props) {
   const [isHovered, setIsHovered] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
 
+  const handleClick = (color) => {
+    props.shuffle();
+    props.takeTurn(color);
+  };
+
   const baseStyle = {
     willChange: "transform",
     backgroundColor: `hsl(${props.color.h},${props.color.s}%,${props.color.l}%)`,
@@ -36,7 +41,7 @@ function Card(props) {
     <div
       className="card"
       style={currentStyle}
-      onClick={props.shuffle}
+      onClick={() => handleClick(props.color.name)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseDown={() => setIsMouseDown(true)}

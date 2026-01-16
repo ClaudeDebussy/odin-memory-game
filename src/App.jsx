@@ -9,11 +9,16 @@ function App() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
+  const [seenColors, setSeenColors] = useState([]);
 
   async function newColors() {
     setData(null);
     setIsLoading(true);
     setError(null);
+    setScore(0);
+    setSeenColors([]);
 
     try {
       const colors = await fetchColors(NUMBER_OF_COLORS_DESIRED);
@@ -23,6 +28,18 @@ function App() {
       setIsLoading(false);
     } finally {
       setIsLoading(false);
+    }
+  }
+
+  function handleTakeTurn(color) {
+    if (!seenColors.includes(color)) {
+      const nextScore = score + 1;
+      setSeenColors([...seenColors, color]);
+      setScore(nextScore);
+      if (nextScore >= highScore) setHighScore(nextScore);
+    } else {
+      setScore(0);
+      setSeenColors([]);
     }
   }
 
@@ -44,10 +61,15 @@ function App() {
 
   return (
     <div className="container">
-      <Header newColors={newColors} />
+      <Header newColors={newColors} score={score} highScore={highScore} />
       <div className="play-area">
         {data.map((color) => (
-          <Card key={color.name} color={color} shuffle={handleShuffle} />
+          <Card
+            key={color.name}
+            color={color}
+            shuffle={handleShuffle}
+            takeTurn={handleTakeTurn}
+          />
         ))}
       </div>
     </div>

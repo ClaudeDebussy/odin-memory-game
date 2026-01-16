@@ -4,13 +4,13 @@ body {
 
 .container {
   height: 100vh;
+  padding: 10px;
   display: flex;
   flex-direction: column;
 }
 
 .play-area {
   flex: 1;
-  padding: 10px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: repeat(6, minmax(0, 1fr));
