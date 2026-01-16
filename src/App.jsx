@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchColors } from "./colorService.js";
 import Card from "./components/Card.jsx";
+import Header from "./components/Header.jsx";
 
 const NUMBER_OF_COLORS_DESIRED = 12;
 
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <div className="container">
+      <Header />
       <div className="play-area">
         {data.map((color) => (
           <Card key={color.name} color={color} />
