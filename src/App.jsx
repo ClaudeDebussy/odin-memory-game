@@ -56,7 +56,11 @@ function App() {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-container">
+        <div className="loading">Loading colors...</div>
+      </div>
+    );
   }
 
   if (error) {

@@ -17,3 +17,14 @@ body {
   gap: 10px;
   overflow: hidden;
 }
+
+.loading-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading {
+  font-size: 75px;
+}
