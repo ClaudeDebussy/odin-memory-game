@@ -12,6 +12,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [seenColors, setSeenColors] = useState([]);
+  const [hasWon, setHasWon] = useState(false);
 
   async function newColors() {
     setData(null);
@@ -43,6 +44,10 @@ function App() {
     }
   }
 
+  function handleWin() {
+    setHasWon(true);
+  }
+
   function handleShuffle() {
     setData(shuffleColors(data));
   }
@@ -61,7 +66,12 @@ function App() {
 
   return (
     <div className="container">
-      <Header newColors={newColors} score={score} highScore={highScore} />
+      <Header
+        newColors={newColors}
+        score={score}
+        highScore={highScore}
+        hasWon={hasWon}
+      />
       <div className="play-area">
         {data.map((color) => (
           <Card
