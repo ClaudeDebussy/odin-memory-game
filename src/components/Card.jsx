@@ -3,6 +3,7 @@ import "../styles/card.css";
 
 function Card(props) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isMouseDown, setIsMouseDown] = useState(false);
 
   const baseStyle = {
     backgroundColor: `hsl(${props.color.h},${props.color.s}%,${props.color.l}%)`,
@@ -14,13 +15,20 @@ function Card(props) {
     backgroundColor: `hsl(${props.color.h},${props.color.s}%,${
       props.color.l - 10
     }%)`,
-    color: `${props.color.contrastHex}`,
     transform: "rotate(2deg)",
+  };
+
+  const mouseDownStyle = {
+    backgroundColor: `hsl(${props.color.h},${props.color.s}%,${
+      props.color.l - 20
+    }%)`,
+    transform: "rotate(4deg)",
   };
 
   const currentStyle = {
     ...baseStyle,
     ...(isHovered && hoveredStyle),
+    ...(isMouseDown && mouseDownStyle),
   };
 
   return (
@@ -30,6 +38,8 @@ function Card(props) {
       onClick={props.shuffle}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onMouseDown={() => setIsMouseDown(true)}
+      onMouseUp={() => setIsMouseDown(false)}
     >
       <h1>{props.color.name}</h1>
     </div>
