@@ -11,8 +11,7 @@ function App() {
   const [error, setError] = useState(null);
 
   function handleShuffle() {
-    const shuffled = shuffleColors(data);
-    setData(shuffled);
+    setData(shuffleColors(data));
   }
 
   useEffect(() => {
