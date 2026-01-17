@@ -2,7 +2,16 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+#root {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
+  width: 100%;
+  max-width: 1000px;
   height: 100vh;
   padding: 10px;
   display: flex;
