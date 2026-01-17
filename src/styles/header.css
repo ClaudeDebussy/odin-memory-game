@@ -1,5 +1,41 @@
 .header {
   display: flex;
   justify-content: space-between;
-  height: 50px;
+  align-items: center;
+  height: auto;
+  padding: 10px 0px;
+  color: white;
+  gap: 5px;
+}
+
+.header h1 {
+  font-size: clamp(0.2rem, 5vmin, 2rem);
+  line-height: 1.1;
+  word-wrap: normal;
+}
+
+.header button {
+  background-color: hsl(0, 0%, 100%);
+  border-width: 2px;
+  border-radius: 5px;
+  padding: 5px 1rem;
+  will-change: "transform";
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  font-size: clamp(0.5rem, 5vmin, 2rem);
+  line-height: 1.1;
+}
+
+.header button:hover {
+  background-color: hsl(139, 45%, 64%);
+  cursor: pointer;
+  transform: rotate(2deg);
+}
+
+.header button:active {
+  background-color: hsl(136, 100%, 49%);
+  cursor: pointer;
+  transform: rotate(4deg);
 }
