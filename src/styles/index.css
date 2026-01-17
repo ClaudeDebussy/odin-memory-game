@@ -36,5 +36,6 @@ body {
 }
 
 .loading {
+  color: white;
   font-size: 75px;
 }
