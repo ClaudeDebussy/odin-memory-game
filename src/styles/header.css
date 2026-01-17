@@ -18,13 +18,14 @@
   background-color: hsl(0, 0%, 100%);
   border-width: 2px;
   border-radius: 5px;
-  padding: 5px 1rem;
+  padding: 5px 3vw;
   will-change: "transform";
   transition: transform 0.2s ease, background-color 0.2s ease;
   text-align: center;
   overflow-wrap: break-word;
   word-wrap: break-word;
   font-size: clamp(0.5rem, 5vmin, 2rem);
+  font-weight: bold;
   line-height: 1.1;
 }
 
